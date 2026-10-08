@@ -1,11 +1,14 @@
-import { Link, useParams } from "react-router-dom";
+"use client";
+
+import { asset } from "../asset.js";
+
+import Link from "next/link";
 import { PillLink } from "../components/Pill.jsx";
 import { rooms, suiteRates } from "../data.js";
 import { useHeaderObserver } from "../site.jsx";
 
-export default function RoomDetail() {
+export default function RoomDetail({ slug }) {
   useHeaderObserver("dark");
-  const { slug } = useParams();
   const room = rooms.find((item) => item.slug === slug) ?? rooms[0];
 
   return (
@@ -23,15 +26,15 @@ export default function RoomDetail() {
           <img src={room.image} alt="" />
           <ul className="room-stats">
             <li>
-              <img className="icon-dark" src="/assets/icon-area.svg" alt="" width="24" height="24" />
+              <img className="icon-dark" src={asset("/assets/icon-area.svg")} alt="" width="24" height="24" />
               {room.area}
             </li>
             <li>
-              <img className="icon-dark" src="/assets/icon-person.svg" alt="" width="24" height="24" />
+              <img className="icon-dark" src={asset("/assets/icon-person.svg")} alt="" width="24" height="24" />
               {room.guests}
             </li>
             <li>
-              <img className="icon-dark" src="/assets/icon-price.svg" alt="" width="24" height="24" />
+              <img className="icon-dark" src={asset("/assets/icon-price.svg")} alt="" width="24" height="24" />
               {room.price}
             </li>
           </ul>
@@ -60,10 +63,10 @@ export default function RoomDetail() {
                 </div>
               ))}
               <div className="rate-links">
-                <Link to="/prices">
+                <Link href="/prices">
                   See price overview of all rooms <span aria-hidden="true">→</span>
                 </Link>
-                <Link to="/inquiry">
+                <Link href="/inquiry">
                   Special offers <span aria-hidden="true">→</span>
                 </Link>
               </div>

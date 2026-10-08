@@ -1,3 +1,7 @@
+"use client";
+
+import { asset } from "../asset.js";
+
 import { PillLink } from "../components/Pill.jsx";
 import { useHeaderObserver, useSnap } from "../site.jsx";
 
@@ -8,7 +12,7 @@ export default function Winter() {
   return (
     <main>
       <section className="feature feature-photo-left snap-section" data-header="light">
-        <img src="/assets/ski.png" alt="Ski slopes near the hotel" />
+        <img src={asset("/assets/ski.png")} alt="Ski slopes near the hotel" />
         <div>
           <h1 className="display">Four Ski resorts just around the corner</h1>
           <p>Embark on Unforgettable Moments in the Snow-Sure Wonderland of Ratschings/Jaufen.</p>
@@ -26,7 +30,7 @@ export default function Winter() {
       </section>
 
       <section className="feature feature-flip snap-section" id="trails" data-header="dark">
-        <img src="/assets/winter-hike.png" alt="Winter hiking trail" />
+        <img src={asset("/assets/winter-hike.png")} alt="Winter hiking trail" />
         <div>
           <h2>In the immediate vicinity there are a variety of winter hiking trails.</h2>
           <p>
@@ -53,15 +57,15 @@ export default function Winter() {
           </a>
         </div>
         <div className="mosaic">
-          <img src="/assets/slide-5.png" alt="" />
-          <img src="/assets/winter-village.png" alt="" />
-          <img src="/assets/hero-winter.png" alt="" />
-          <img src="/assets/ski.png" alt="" />
+          <img src={asset("/assets/slide-5.png")} alt="" />
+          <img src={asset("/assets/winter-village.png")} alt="" />
+          <img src={asset("/assets/hero-winter.png")} alt="" />
+          <img src={asset("/assets/ski.png")} alt="" />
         </div>
       </section>
 
       <section className="wide-story snap-section" id="toboggan" data-header="dark">
-        <img src="/assets/winter-village.png" alt="Snow-covered village" />
+        <img src={asset("/assets/winter-village.png")} alt="Snow-covered village" />
         <div className="wide-story-copy">
           <h2>Near the hotel there are many opportunities for tobogganing</h2>
           <div>
@@ -78,7 +82,7 @@ export default function Winter() {
 
       <section className="two-notes snap-section" data-header="dark">
         <article>
-          <img src="/assets/slide-6.png" alt="" />
+          <img src={asset("/assets/slide-6.png")} alt="" />
           <h2>The sport of ski touring is also becoming more and more popular. Many tours are waiting for you!</h2>
           <p>
             Whether beginner or advanced. In the Wipptal there are many ski tours of different lengths and
@@ -93,7 +97,7 @@ export default function Winter() {
             levels of difficulty.
           </p>
           <PillLink to="/inquiry">MORE INFORMATION</PillLink>
-          <img src="/assets/gallery-4.png" alt="" />
+          <img src={asset("/assets/gallery-4.png")} alt="" />
         </article>
       </section>
     </main>

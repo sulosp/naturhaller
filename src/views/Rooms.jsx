@@ -1,3 +1,5 @@
+"use client";
+
 import RoomCards from "../components/RoomCards.jsx";
 import { useHeaderObserver } from "../site.jsx";
 

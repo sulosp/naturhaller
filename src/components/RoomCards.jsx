@@ -1,5 +1,9 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+"use client";
+
+import { asset } from "../asset.js";
+
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { rooms } from "../data.js";
 
@@ -66,6 +70,17 @@ export default function RoomCards() {
     setActive((value) => (value + direction + rooms.length) % rooms.length);
   }
 
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused || !cardWidth) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = window.setInterval(() => {
+      cursor.current += 1;
+      setActive((value) => (value + 1) % rooms.length);
+    }, 2000);
+    return () => window.clearInterval(id);
+  }, [paused, active, cardWidth]);
+
   function goTo(index) {
     const count = rooms.length;
     const current = ((cursor.current % count) + count) % count;
@@ -74,7 +89,7 @@ export default function RoomCards() {
   }
 
   return (
-    <div className="room-carousel">
+    <div className="room-carousel" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="room-frame" ref={frameRef}>
         <div className="room-track" ref={trackRef}>
           {[0, 1, 2].map((copy) =>
@@ -82,27 +97,27 @@ export default function RoomCards() {
               <Link
                 className="room-card"
                 key={`${copy}-${room.slug}`}
-                to={`/living/${room.slug}`}
+                href={`/living/${room.slug}`}
                 style={cardWidth ? { width: cardWidth, flexBasis: cardWidth } : undefined}
                 tabIndex={copy === 1 ? undefined : -1}
                 aria-hidden={copy === 1 ? undefined : true}
               >
                 <img className="room-card-photo" src={room.image} alt="" />
                 <span className="room-card-name">{room.name}</span>
-                <span className="room-card-facts">
-                  <span>
-                    <img src="/assets/icon-area.svg" alt="" width="24" height="24" />
+                <div className="room-card-facts">
+                  <div className="room-fact">
+                    <img src={asset("/assets/icon-area.svg")} alt="" width="24" height="24" />
                     {room.area}
-                  </span>
-                  <span>
-                    <img src="/assets/icon-person.svg" alt="" width="24" height="24" />
+                  </div>
+                  <div className="room-fact">
+                    <img src={asset("/assets/icon-person.svg")} alt="" width="24" height="24" />
                     {room.guests}
-                  </span>
-                  <span>
-                    <img src="/assets/icon-price.svg" alt="" width="24" height="24" />
+                  </div>
+                  <div className="room-fact">
+                    <img src={asset("/assets/icon-price.svg")} alt="" width="24" height="24" />
                     {room.price}
-                  </span>
-                </span>
+                  </div>
+                </div>
               </Link>
             )),
           )}

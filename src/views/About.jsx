@@ -1,12 +1,16 @@
+"use client";
+
+import { asset } from "../asset.js";
+
 import { PillLink } from "../components/Pill.jsx";
 import { philosophy } from "../data.js";
 import { useHeaderObserver, useSnap } from "../site.jsx";
 
 const gallery = [
-  "/assets/gallery-1.png",
-  "/assets/gallery-2.png",
-  "/assets/gallery-3.png",
-  "/assets/gallery-4.png",
+  asset("/assets/gallery-1.png"),
+  asset("/assets/gallery-2.png"),
+  asset("/assets/gallery-3.png"),
+  asset("/assets/gallery-4.png"),
 ];
 
 export default function About() {
@@ -16,7 +20,7 @@ export default function About() {
   return (
     <main>
       <section className="philosophy snap-section" data-header="light">
-        <img src="/assets/philosophy.png" alt="" />
+        <img src={asset("/assets/philosophy.png")} alt="" />
         <div className="philosophy-shade" />
         <div className="philosophy-inner">
           <p className="eyebrow light">Philosophy</p>
@@ -49,7 +53,7 @@ export default function About() {
       </section>
 
       <section className="children snap-section" data-header="dark">
-        <img src="/assets/children.png" alt="" />
+        <img src={asset("/assets/children.png")} alt="" />
         <div className="children-copy">
           <div>
             <p className="eyebrow">Children are welcome</p>

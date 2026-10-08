@@ -1,3 +1,7 @@
+"use client";
+
+import { asset } from "../asset.js";
+
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import RoomCards from "../components/RoomCards.jsx";
@@ -30,7 +34,7 @@ function Hero() {
     <section className="hero snap-section" data-header="light">
       <img
         className="hero-photo"
-        src={winter ? "/assets/hero-winter.png" : "/assets/hero-summer.png"}
+        src={winter ? asset("/assets/hero-winter.png") : asset("/assets/hero-summer.png")}
         alt=""
       />
       <div className="hero-shade" />
@@ -45,7 +49,7 @@ function Hero() {
           >
             <img
               className={!winter ? "" : "icon-invert"}
-              src="/assets/sun.svg"
+              src={asset("/assets/sun.svg")}
               alt=""
               width="16"
               height="16"
@@ -59,7 +63,7 @@ function Hero() {
           >
             <img
               className={winter ? "icon-dark" : ""}
-              src="/assets/snow.svg"
+              src={asset("/assets/snow.svg")}
               alt=""
               width="16"
               height="16"
@@ -181,10 +185,26 @@ function Story() {
     setIndex((value) => (value + direction + slides.length) % slides.length);
   }
 
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = window.setInterval(() => {
+      setIndex((value) => (value + 1) % slides.length);
+    }, 2000);
+    return () => window.clearInterval(id);
+  }, [paused, index]);
+
   return (
-    <section className="story snap-section" id="story" data-header="dark">
+    <section
+      className="story snap-section"
+      id="story"
+      data-header="dark"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="wave-wrap" aria-hidden="true">
-        <img src="/assets/wave.svg" alt="" width="1465" height="536" />
+        <img src={asset("/assets/wave.svg")} alt="" width="1465" height="536" />
       </div>
       <h2 className="story-title" ref={titleRef}>{slide.title}</h2>
       <div className="story-window" ref={windowRef}>
@@ -229,7 +249,7 @@ function AboutTeaser() {
         </p>
         <PillLink to="/inquiry">BOOK NOW</PillLink>
       </div>
-      <img className="split-photo" src="/assets/reception.png" alt="Reception at Naturhotel Haller" />
+      <img className="split-photo" src={asset("/assets/reception.png")} alt="Reception at Naturhotel Haller" />
     </section>
   );
 }
@@ -250,20 +270,22 @@ function RoomsTeaser() {
 function WellnessTeaser() {
   return (
     <section className="wellness-teaser snap-section" data-header="dark">
-      <img src="/assets/wellness-pool.png" alt="Indoor pool in the wooden wellness area" />
-      <div className="wellness-copy">
-        <h2 className="display">
-          Wellness at
-          <br />
-          our Hotel
-        </h2>
-        <p className="lead">
-          Indoor pool with panoramic views on the fantastic landscapes of the southtirolean mountains
-        </p>
-        <p>One of the best spots in the hotel is the big pool with an amazing view on the Stubai Alps.</p>
-        <PillLink to="/wellness">VIEW MORE</PillLink>
+      <img src={asset("/assets/wellness-pool.png")} alt="Indoor pool in the wooden wellness area" />
+      <div className="wellness-side">
+        <div className="wellness-copy">
+          <h2 className="display">
+            Wellness at
+            <br />
+            our Hotel
+          </h2>
+          <p className="lead">
+            Indoor pool with panoramic views on the fantastic landscapes of the southtirolean mountains
+          </p>
+          <p>One of the best spots in the hotel is the big pool with an amazing view on the Stubai Alps.</p>
+          <PillLink to="/wellness">VIEW MORE</PillLink>
+        </div>
+        <img className="wellness-accent" src={asset("/assets/sauna-bucket.png")} alt="" />
       </div>
-      <img className="wellness-accent" src="/assets/sauna-bucket.png" alt="" />
     </section>
   );
 }
@@ -271,7 +293,7 @@ function WellnessTeaser() {
 function WinterTeaser() {
   return (
     <section className="poster snap-section" data-header="light">
-      <img src="/assets/winter-village.png" alt="" />
+      <img src={asset("/assets/winter-village.png")} alt="" />
       <div className="poster-shade poster-shade-top" />
       <div className="poster-copy">
         <h2>Embark on Unforgettable Moments in the Snow-Sure Wonderland</h2>
@@ -286,7 +308,7 @@ function WinterTeaser() {
 function SummerTeaser() {
   return (
     <section className="poster snap-section" data-header="light">
-      <img src="/assets/summer-village.png" alt="Mareit in summer, with the church and castle" />
+      <img src={asset("/assets/summer-village.png")} alt="Mareit in summer, with the church and castle" />
       <div className="glass-card">
         <h2>A paradise at the foot of 3000 meter high mountains.</h2>
         <PillLink to="/summer" solid>

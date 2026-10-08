@@ -1,3 +1,5 @@
+"use client";
+
 import { priceRows, priceSeasons } from "../data.js";
 import { useHeaderObserver } from "../site.jsx";
 

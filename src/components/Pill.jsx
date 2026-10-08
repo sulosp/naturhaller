@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 
 export function PillLink({ to, children, solid = false, onClick }) {
   const className = solid ? "pill pill-solid" : "pill";
   if (to) {
     return (
-      <Link className={className} to={to} onClick={onClick}>
+      <Link className={className} href={to} onClick={onClick}>
         {children}
       </Link>
     );

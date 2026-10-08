@@ -1,3 +1,7 @@
+"use client";
+
+import { asset } from "../asset.js";
+
 import { PillLink } from "../components/Pill.jsx";
 import { useHeaderObserver, useSnap } from "../site.jsx";
 
@@ -8,7 +12,7 @@ export default function Wellness() {
   return (
     <main>
       <section className="poster snap-section wellness-pool" id="pool" data-header="light">
-        <img src="/assets/pool-full.png" alt="Indoor pool with a view of the mountains" />
+        <img src={asset("/assets/pool-full.png")} alt="Indoor pool with a view of the mountains" />
         <div className="glass-card glass-right">
           <p className="lead">
             With every breath you take you can feel the ease of activity while the water surrounds you.
@@ -23,7 +27,7 @@ export default function Wellness() {
       </section>
 
       <section className="feature snap-section" id="sauna" data-header="dark">
-        <img src="/assets/sauna.png" alt="Finnish sauna" />
+        <img src={asset("/assets/sauna.png")} alt="Finnish sauna" />
         <div>
           <h1 className="display">Sauna</h1>
           <p>
@@ -38,7 +42,7 @@ export default function Wellness() {
       </section>
 
       <section className="feature feature-flip snap-section" id="whirlpool" data-header="dark">
-        <img src="/assets/whirlpool.png" alt="Whirlpool" />
+        <img src={asset("/assets/whirlpool.png")} alt="Whirlpool" />
         <div>
           <h2 className="display">Whirlpool for 6 people</h2>
           <p>
@@ -50,11 +54,11 @@ export default function Wellness() {
             AND MORE
           </a>
         </div>
-        <img className="feature-extra" src="/assets/whirlpool-detail.png" alt="" />
+        <img className="feature-extra" src={asset("/assets/whirlpool-detail.png")} alt="" />
       </section>
 
       <section className="feature snap-section" id="massage" data-header="dark">
-        <img src="/assets/gallery-2.png" alt="" />
+        <img src={asset("/assets/gallery-2.png")} alt="" />
         <div>
           <h2 className="display">Indulge yourself, you deserve it!</h2>
           <p>
@@ -74,10 +78,10 @@ export default function Wellness() {
         <p className="center-note">Indulge yourself, you deserve it!</p>
         <PillLink to="/inquiry">INQUIRE</PillLink>
         <div className="filmstrip">
-          <img src="/assets/wellness-pool.png" alt="" />
-          <img src="/assets/sauna-bucket.png" alt="" />
-          <img src="/assets/whirlpool-detail.png" alt="" />
-          <img src="/assets/gallery-3.png" alt="" />
+          <img src={asset("/assets/wellness-pool.png")} alt="" />
+          <img src={asset("/assets/sauna-bucket.png")} alt="" />
+          <img src={asset("/assets/whirlpool-detail.png")} alt="" />
+          <img src={asset("/assets/gallery-3.png")} alt="" />
         </div>
       </section>
     </main>

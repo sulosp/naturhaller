@@ -8,14 +8,15 @@
   --header: 94px;
   color: var(--navy);
   background: var(--white);
-  font-family: "Albert Sans", sans-serif;
+  font-family: var(--font-albert), "Albert Sans", sans-serif;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.5;
 }
 
 * { box-sizing: border-box; }
-html, body, #root { margin: 0; min-height: 100%; }
+html, body { margin: 0; min-height: 100%; }
+nextjs-portal { display: none !important; }
 body { background: var(--white); }
 body.menu-lock { overflow: hidden; }
 html.snap { scroll-snap-type: y mandatory; }
@@ -73,7 +74,7 @@ a { color: inherit; }
   color: inherit;
   cursor: pointer;
   letter-spacing: 2.4px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--font-roboto), Roboto, sans-serif;
   font-weight: 300;
   font-size: 12px;
 }
@@ -130,7 +131,7 @@ a { color: inherit; }
   color: var(--navy);
   text-decoration: none;
   letter-spacing: 2.8px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--font-roboto), Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;
@@ -175,7 +176,7 @@ a { color: inherit; }
 }
 .menu a {
   display: inline-block;
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-size: clamp(40px, 6vw, 72px);
   line-height: 1.15;
   text-decoration: none;
@@ -183,9 +184,22 @@ a { color: inherit; }
 }
 .menu a.active,
 .menu a:hover { color: var(--green); }
+.menu li { position: relative; }
+.menu-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 360px;
+  object-fit: cover;
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
 .display {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(52px, 7vw, 96px);
   line-height: 0.82;
@@ -232,7 +246,7 @@ h1, h2, h3, p { margin: 0; }
   z-index: 1;
   width: min(540px, 88vw);
   text-align: center;
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(64px, 8vw, 102px);
   line-height: 0.88;
@@ -251,7 +265,7 @@ h1, h2, h3, p { margin: 0; }
 .hero-bar p {
   letter-spacing: 5.58px;
   text-transform: uppercase;
-  font-family: Roboto, sans-serif;
+  font-family: var(--font-roboto), Roboto, sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 28px;
@@ -276,7 +290,7 @@ h1, h2, h3, p { margin: 0; }
   border-radius: 50px;
   background: transparent;
   color: white;
-  font-family: "Albert Sans", sans-serif;
+  font-family: var(--font-albert), "Albert Sans", sans-serif;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
@@ -310,7 +324,7 @@ h1, h2, h3, p { margin: 0; }
   z-index: 2;
   align-self: end;
   text-align: center;
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(72px, 11vw, 150px);
   line-height: 0.9;
@@ -379,7 +393,7 @@ h1, h2, h3, p { margin: 0; }
   gap: 32px;
 }
 .story-foot h3 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-size: 36px;
   font-weight: 400;
   line-height: 0.93;
@@ -387,7 +401,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .story-foot p {
   max-width: 683px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--font-roboto), Roboto, sans-serif;
   font-weight: 300;
   font-size: 14px;
   line-height: 20px;
@@ -404,7 +418,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .split-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .split-copy h3 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-size: 36px;
   font-weight: 400;
   line-height: 0.93;
@@ -423,7 +437,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .rooms-intro { max-width: 640px; padding-left: 53px; }
 .rooms-intro h1, .rooms-intro h2 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(40px, 4vw, 48px);
   line-height: 0.93;
@@ -467,19 +481,22 @@ h1, h2, h3, p { margin: 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.7s ease;
 }
+.room-card:hover .room-card-photo { transform: scale(1.08); }
 .room-card-facts img { width: 24px; height: 24px; }
 .room-card-name, .room-card-facts { position: relative; z-index: 1; color: white; }
 .room-card-name {
   padding: 24px 24px 0;
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: 32px;
   line-height: 0.95;
   background: none;
 }
 .room-card-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 20px; }
-.room-card-facts span { display: flex; flex-direction: column; gap: 8px; font-weight: 300; color: white; }
+.room-fact { 
+  display: inline-flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; font-weight: 300; color: white; }
 .room-card::after {
   content: "";
   position: absolute;
@@ -489,22 +506,33 @@ h1, h2, h3, p { margin: 0; }
 
 .wellness-teaser {
   display: grid;
-  grid-template-columns: minmax(280px, 591px) minmax(280px, 496px);
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  padding: 120px 48px 48px 0;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
   background: white;
+  min-height: 100vh;
 }
-.wellness-teaser > img:first-child { width: 100%; height: min(552px, 68vh); object-fit: cover; }
-.wellness-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 40px; }
+.wellness-teaser > img:first-child {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+.wellness-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 48px;
+  padding: 80px;
+  min-width: 0;
+}
+.wellness-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .lead { font-weight: 700; line-height: 24px; }
 .wellness-accent {
-  grid-column: 2;
-  justify-self: end;
   width: min(434px, 100%);
   height: 194px;
   object-fit: cover;
+  align-self: flex-end;
 }
 
 .poster { overflow: hidden; color: white; }
@@ -525,7 +553,7 @@ h1, h2, h3, p { margin: 0; }
   align-items: flex-start;
 }
 .poster-copy h2 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(52px, 7vw, 96px);
   line-height: 0.86;
@@ -547,7 +575,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .glass-card h2, .glass-right p { color: white; }
 .glass-card h2 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(32px, 4vw, 48px);
   line-height: 0.93;
@@ -607,7 +635,7 @@ h1, h2, h3, p { margin: 0; }
   text-align: center;
 }
 .gallery-band h2, .children h2, .impressions h1, .impressions h2, .wide-story h2, .sights h2, .feature h2, .two-notes h2 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(36px, 4vw, 48px);
   line-height: 0.93;
@@ -716,7 +744,7 @@ blockquote { margin: 12px 0 0; max-width: 720px; }
 
 .suite-rates { padding: 40px 56px 80px; }
 .suite-rates h2 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-size: clamp(48px, 6vw, 79px);
   font-weight: 400;
   text-align: center;
@@ -770,7 +798,7 @@ blockquote { margin: 12px 0 0; max-width: 720px; }
   background: white;
   overflow: hidden;
 }
-.center-note { font-family: Italiana, serif; font-size: 34px; }
+.center-note { font-family: var(--font-italiana), Italiana, serif; font-size: 34px; }
 .filmstrip {
   margin-top: 36px;
   width: 100%;
@@ -823,7 +851,7 @@ blockquote { margin: 12px 0 0; max-width: 720px; }
 
 .prices { padding: 140px 48px 80px; }
 .prices h1 {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-weight: 400;
   font-size: clamp(32px, 3vw, 40px);
   margin: 8px 0 36px;
@@ -851,7 +879,7 @@ blockquote { margin: 12px 0 0; max-width: 720px; }
 }
 .inquiry-intro img { width: 100%; height: 249px; object-fit: cover; margin-bottom: 28px; }
 .inquiry-sub {
-  font-family: Italiana, serif;
+  font-family: var(--font-italiana), Italiana, serif;
   font-size: clamp(28px, 3vw, 48px);
   line-height: 0.93;
   text-transform: capitalize;
@@ -895,7 +923,10 @@ blockquote { margin: 12px 0 0; max-width: 720px; }
   .feature-flip > div { order: 0; }
   .room-stats { position: static; transform: none; width: auto; flex-direction: row; margin-top: 12px; }
   .room-stats li { flex: 1; }
-  .wellness-accent { grid-column: auto; }
+  .wellness-teaser { padding-right: 24px; }
+  .wellness-teaser > img:first-child { min-height: 420px; }
+  .wellness-side { padding: 32px 0 48px; }
+  .wellness-accent { align-self: stretch; width: 100%; }
   .glass-card, .glass-right { position: relative; right: auto; bottom: auto; margin: 24px; }
   .poster { display: flex; flex-direction: column; justify-content: flex-end; }
   .story-foot, .impressions-head, .impressions-split, .wide-story-copy { flex-direction: column; align-items: flex-start; width: calc(100% - 40px); }

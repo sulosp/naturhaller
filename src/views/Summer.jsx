@@ -1,3 +1,7 @@
+"use client";
+
+import { asset } from "../asset.js";
+
 import { PillLink } from "../components/Pill.jsx";
 import { useHeaderObserver, useSnap } from "../site.jsx";
 
@@ -8,9 +12,9 @@ export default function Summer() {
   return (
     <main>
       <section className="feature feature-photo-left snap-section" data-header="light">
-        <img src="/assets/hike-side.png" alt="Summer landscape beside the hotel" />
+        <img src={asset("/assets/hike-side.png")} alt="Summer landscape beside the hotel" />
         <div>
-          <img className="inline-photo" src="/assets/hike-top.png" alt="Hiking above the valley" />
+          <img className="inline-photo" src={asset("/assets/hike-top.png")} alt="Hiking above the valley" />
           <p>
             Around the hotel there are a variety of tours. Beginners and advanced hikers can find more
             then enough tours to fill weeks full of nice experiences.What is your next project?
@@ -40,15 +44,15 @@ export default function Summer() {
           </div>
         </div>
         <div className="mosaic">
-          <img src="/assets/slide-1.png" alt="" />
-          <img src="/assets/summer-village.png" alt="" />
-          <img src="/assets/gallery-1.png" alt="" />
-          <img src="/assets/hike-top.png" alt="" />
+          <img src={asset("/assets/slide-1.png")} alt="" />
+          <img src={asset("/assets/summer-village.png")} alt="" />
+          <img src={asset("/assets/gallery-1.png")} alt="" />
+          <img src={asset("/assets/hike-top.png")} alt="" />
         </div>
       </section>
 
       <section className="wide-story snap-section" id="cycling" data-header="dark">
-        <img src="/assets/summer-village.png" alt="The valley in summer" />
+        <img src={asset("/assets/summer-village.png")} alt="The valley in summer" />
         <div className="wide-story-copy">
           <h2>Cycling and e-biking are becoming more and more popular.</h2>
           <div>
@@ -65,7 +69,7 @@ export default function Summer() {
 
       <section className="sights snap-section" id="sights" data-header="dark">
         <article>
-          <img src="/assets/gallery-3.png" alt="" />
+          <img src={asset("/assets/gallery-3.png")} alt="" />
           <div>
             <h2 className="display tight">Something about everything</h2>
             <p>
@@ -87,7 +91,7 @@ export default function Summer() {
             </p>
             <PillLink to="/inquiry">INQUIRY</PillLink>
           </div>
-          <img src="/assets/hero-summer.png" alt="" />
+          <img src={asset("/assets/hero-summer.png")} alt="" />
         </article>
       </section>
     </main>

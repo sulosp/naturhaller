@@ -1,5 +1,9 @@
-import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+"use client";
+
+import { asset } from "../asset.js";
+
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { rooms } from "../data.js";
 import { useHeaderObserver } from "../site.jsx";
 
@@ -17,11 +21,8 @@ const fields = [
 
 export default function Inquiry() {
   useHeaderObserver("dark");
-  const [params] = useSearchParams();
-  const room = useMemo(
-    () => rooms.find((item) => item.slug === params.get("room")),
-    [params],
-  );
+  const params = useSearchParams();
+  const room = rooms.find((item) => item.slug === params.get("room"));
   const [sent, setSent] = useState(false);
 
   function onSubmit(event) {
@@ -39,7 +40,7 @@ export default function Inquiry() {
     <main className="page-pad inquiry" data-header="dark">
       <section className="inquiry-layout">
         <div className="inquiry-intro">
-          <img src="/assets/inquiry.png" alt="The valley around Naturhotel Haller" />
+          <img src={asset("/assets/inquiry.png")} alt="The valley around Naturhotel Haller" />
           <h1 className="display">Inquiry</h1>
           <p className="inquiry-sub">for your dream vacation at our hotel</p>
           {room && <p className="inquiry-room">Regarding {room.name}</p>}
@@ -61,7 +62,7 @@ export default function Inquiry() {
                   <option>Mr</option>
                   <option>Mx</option>
                 </select>
-                <img src="/assets/icon-chevron.svg" alt="" width="24" height="24" />
+                <img src={asset("/assets/icon-chevron.svg")} alt="" width="24" height="24" />
               </label>
               <label className="field">
                 <span className="sr-only">First Name</span>
